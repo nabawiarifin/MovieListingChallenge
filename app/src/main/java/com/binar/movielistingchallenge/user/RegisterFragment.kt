@@ -20,6 +20,7 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
         return binding.root
     }
 

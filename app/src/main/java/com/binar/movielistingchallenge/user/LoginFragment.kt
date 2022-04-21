@@ -23,15 +23,16 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding = FragmentLoginBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    var registerDb: RegisterDatabase? = null
+//    var registerDb: RegisterDatabase? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        registerDb = RegisterDatabase.getInstance(MainActivity())
+//        registerDb = RegisterDatabase.getInstance(MainActivity())
 
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_mainFragment) // Goes to homepage
