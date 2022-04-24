@@ -1,12 +1,7 @@
-package com.binar.movielistingchallenge.network
+package com.binar.movielistingchallenge.movie.movies.network
 
-import android.graphics.Movie
-import com.binar.movielistingchallenge.model.MovieModel
-import com.binar.movielistingchallenge.model.Movies
+import com.binar.movielistingchallenge.movie.movies.model.MovieModel
 import retrofit2.Call
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 //Binar

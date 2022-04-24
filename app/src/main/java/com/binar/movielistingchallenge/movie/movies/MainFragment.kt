@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge
+package com.binar.movielistingchallenge.movie.movies
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.binar.movielistingchallenge.adapter.MainAdapter
+import com.binar.movielistingchallenge.movie.movies.adapter.MainAdapter
 import com.binar.movielistingchallenge.databinding.FragmentMainBinding
-import com.binar.movielistingchallenge.model.Movies
-import com.binar.movielistingchallenge.network.MovieApi
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 //// Binar
 //class MainFragment : Fragment() {
 //    private lateinit var binding: FragmentMainBinding
@@ -68,6 +65,7 @@ import retrofit2.Response
 class MainFragment : Fragment() {
     private val viewModel: MovieViewModel by viewModels()
     private lateinit var binding: FragmentMainBinding
+    private val args: MainFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +78,12 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Displays recycler view data
         setupObserver()
+
+        //Gets username from login page using navArgs
+        binding.tvUsername.text = args.username
+
     }
 
     private fun setupObserver(){

@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.binar.movielistingchallenge.MainFragment"
+        android:name="com.binar.movielistingchallenge.movie.movies.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -37,7 +40,11 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.binar.movielistingchallenge.SecondFragment"
+        android:name="com.binar.movielistingchallenge.movie.movies.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second" >
+        <argument
+            android:name="movie_details"
+            app:argType="com.binar.movielistingchallenge.movie.movies.model.MovieDetails" />
+    </fragment>
 </navigation>

@@ -1,8 +1,7 @@
-package com.binar.movielistingchallenge.network
+package com.binar.movielistingchallenge.movie.movies.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
@@ -10,5 +9,5 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 object MovieApi {
-    val retrofitService:MovieApiInterface by lazy {retrofit.create(MovieApiInterface::class.java)}
+    val retrofitService: MovieApiInterface by lazy { retrofit.create(MovieApiInterface::class.java)}
 }

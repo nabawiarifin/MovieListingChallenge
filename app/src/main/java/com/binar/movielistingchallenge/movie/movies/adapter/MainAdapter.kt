@@ -1,16 +1,14 @@
-package com.binar.movielistingchallenge.adapter
+package com.binar.movielistingchallenge.movie.movies.adapter
 
-import android.content.DialogInterface
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.binar.movielistingchallenge.databinding.MovieItemBinding
-import com.binar.movielistingchallenge.model.Movies
+import com.binar.movielistingchallenge.movie.movies.MainFragmentDirections
+import com.binar.movielistingchallenge.movie.movies.model.MovieDetails
+import com.binar.movielistingchallenge.movie.movies.model.Movies
 import com.bumptech.glide.Glide
-import kotlin.coroutines.coroutineContext
 
 ////Binar Adapter
 //class MainAdapter(private val onItemClick: OnClickListener) : RecyclerView.Adapter<MainAdapter.MovieViewHolder>() {
@@ -80,11 +78,28 @@ class MainAdapter(private val data:List<Movies>) : RecyclerView.Adapter<MainAdap
             tvRating.text = data[position].voteAverage.toString()
             tvDescription.text = data[position].overview
 
+            viewMovie.setOnClickListener {
+                val title = data[position].title
+                val poster = data[position].backdropPath
+                val date = data[position].releaseDate
+                val overview = data[position].overview
+
+                val movieDetails = MovieDetails(
+                    title,
+                    poster,
+                    date,
+                    overview
+                )
+
+                it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToSecondFragment(movieDetails))
+            }
         }
 
         Glide.with(holder.itemView.context)
             .load("https://image.tmdb.org/t/p/w780/"+data[position].backdropPath)
             .into(holder.binding.ivMovie)
+
+
     }
 
     override fun getItemCount(): Int {

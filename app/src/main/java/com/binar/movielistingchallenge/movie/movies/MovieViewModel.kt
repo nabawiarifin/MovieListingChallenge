@@ -1,14 +1,13 @@
-package com.binar.movielistingchallenge
+package com.binar.movielistingchallenge.movie.movies
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.binar.movielistingchallenge.model.MovieModel
-import com.binar.movielistingchallenge.model.Movies
-import com.binar.movielistingchallenge.network.MovieApi
+import com.binar.movielistingchallenge.movie.movies.model.MovieModel
+import com.binar.movielistingchallenge.movie.movies.model.Movies
+import com.binar.movielistingchallenge.movie.movies.network.MovieApi
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 //Andre

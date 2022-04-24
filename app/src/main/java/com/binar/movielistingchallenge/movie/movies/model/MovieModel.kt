@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.model
+package com.binar.movielistingchallenge.movie.movies.model
 
 
 import com.google.gson.annotations.SerializedName

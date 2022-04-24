@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "register_user_table")
 @Parcelize
 data class RegisterEntity (
+
     @PrimaryKey(autoGenerate = true)
     var id: Int?,
 
