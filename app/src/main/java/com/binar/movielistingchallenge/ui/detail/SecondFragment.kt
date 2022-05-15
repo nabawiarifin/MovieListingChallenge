@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.movie.movies
+package com.binar.movielistingchallenge.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.binar.movielistingchallenge.R
-import com.binar.movielistingchallenge.databinding.FragmentMainBinding
 import com.binar.movielistingchallenge.databinding.FragmentSecondBinding
 import com.bumptech.glide.Glide
 

@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.user.database
+package com.binar.movielistingchallenge.data.user
 
 import android.content.Context
 import androidx.room.Database

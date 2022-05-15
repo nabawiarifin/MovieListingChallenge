@@ -1,13 +1,12 @@
-package com.binar.movielistingchallenge.movie.movies.adapter
+package com.binar.movielistingchallenge.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.binar.movielistingchallenge.databinding.MovieItemBinding
-import com.binar.movielistingchallenge.movie.movies.MainFragmentDirections
-import com.binar.movielistingchallenge.movie.movies.model.MovieDetails
-import com.binar.movielistingchallenge.movie.movies.model.Movies
+import com.binar.movielistingchallenge.data.remotemodel.MovieDetails
+import com.binar.movielistingchallenge.data.remotemodel.Movies
 import com.bumptech.glide.Glide
 
 ////Binar Adapter

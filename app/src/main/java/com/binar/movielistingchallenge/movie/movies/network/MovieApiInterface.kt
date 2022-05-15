@@ -1,6 +1,6 @@
 package com.binar.movielistingchallenge.movie.movies.network
 
-import com.binar.movielistingchallenge.movie.movies.model.MovieModel
+import com.binar.movielistingchallenge.data.remotemodel.MovieModel
 import retrofit2.Call
 import retrofit2.http.GET
 

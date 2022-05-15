@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.user.database
+package com.binar.movielistingchallenge.data.user
 
 import androidx.room.Dao
 import androidx.room.Insert

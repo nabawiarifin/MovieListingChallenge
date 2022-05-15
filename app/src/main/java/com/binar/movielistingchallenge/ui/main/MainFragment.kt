@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.movie.movies
+package com.binar.movielistingchallenge.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.binar.movielistingchallenge.movie.movies.adapter.MainAdapter
 import com.binar.movielistingchallenge.databinding.FragmentMainBinding
 
 //// Binar

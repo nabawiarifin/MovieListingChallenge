@@ -1,11 +1,11 @@
-package com.binar.movielistingchallenge.movie.movies
+package com.binar.movielistingchallenge.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.binar.movielistingchallenge.movie.movies.model.MovieModel
-import com.binar.movielistingchallenge.movie.movies.model.Movies
+import com.binar.movielistingchallenge.data.remotemodel.MovieModel
+import com.binar.movielistingchallenge.data.remotemodel.Movies
 import com.binar.movielistingchallenge.movie.movies.network.MovieApi
 import retrofit2.Call
 import retrofit2.Response

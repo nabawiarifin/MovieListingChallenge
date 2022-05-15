@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.user.database
+package com.binar.movielistingchallenge.data.user
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

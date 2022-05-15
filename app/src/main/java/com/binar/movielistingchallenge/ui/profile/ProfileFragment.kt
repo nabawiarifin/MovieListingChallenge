@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.movie.movies
+package com.binar.movielistingchallenge.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

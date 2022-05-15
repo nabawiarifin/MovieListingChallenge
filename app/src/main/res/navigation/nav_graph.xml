@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.binar.movielistingchallenge.movie.movies.MainFragment"
+        android:name="com.binar.movielistingchallenge.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.binar.movielistingchallenge.user.LoginFragment"
+        android:name="com.binar.movielistingchallenge.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.binar.movielistingchallenge.user.RegisterFragment"
+        android:name="com.binar.movielistingchallenge.ui.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.binar.movielistingchallenge.movie.movies.SecondFragment"
+        android:name="com.binar.movielistingchallenge.ui.detail.SecondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
         <argument
