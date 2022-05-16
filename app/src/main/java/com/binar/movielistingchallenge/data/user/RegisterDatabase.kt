@@ -5,21 +5,33 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [RegisterEntity::class], version = 1)
+@Database(entities = [RegisterEntity::class], version = 1, exportSchema = false)
 abstract class RegisterDatabase: RoomDatabase() {
+
     abstract fun registerDAO(): RegisterDAO
 
     companion object{
+        @Volatile
         private var INSTANCE: RegisterDatabase? = null
 
-        fun getInstance(context: Context): RegisterDatabase? {
-            if(INSTANCE == null){
-                synchronized(RegisterDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, RegisterDatabase::class.java, "Register.db")
+        fun getInstance(context: Context): RegisterDatabase {
+            synchronized(this) {
+
+                var instance = INSTANCE
+
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        RegisterDatabase::class.java,
+                        "user_details_database"
+                    )
+                        .fallbackToDestructiveMigration()
                         .build()
+
+                    INSTANCE = instance
                 }
+                return instance
             }
-            return INSTANCE
         }
 
         fun destroyInstance(){

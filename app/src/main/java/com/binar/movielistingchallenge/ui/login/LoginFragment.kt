@@ -6,35 +6,45 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.binar.movielistingchallenge.databinding.FragmentLoginBinding
 import com.binar.movielistingchallenge.data.user.RegisterDatabase
+import com.binar.movielistingchallenge.data.user.UserRepository
+import com.binar.movielistingchallenge.ui.main.MovieViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: FragmentLoginBinding
-    var registerDb: RegisterDatabase? = null
 
+    //Coroutine
+    private val viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(layoutInflater)
+        //Opens up database
+
+        val registerDAO = RegisterDatabase.getInstance(requireContext()).registerDAO()
+        val repository = UserRepository(registerDAO)
+        val factory = LoginViewModelFactory(repository)
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //Opens up database
-        registerDb = RegisterDatabase.getInstance(requireContext())
-
-        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         binding.btnLogin.setOnClickListener {
             //saves username and password from edittext
@@ -47,31 +57,11 @@ class LoginFragment : Fragment() {
                     .show()
                 //Checks if username and password the same as in database
             } else {
-//                Thread(Runnable {
-//                    val result = registerDb?.registerDAO()?.getUser(username, password) //opens up database
-//                    activity?.runOnUiThread {
-//                        if (result != null) {
-//                            Toast.makeText(activity, "Login Successful", Toast.LENGTH_LONG).show()
-//                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment(username)) // Goes to main page and sends username
-//                        } else {
-//                            Toast.makeText(
-//                                activity,
-//                                "Username or Password is not correct",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }
-//                    }
-//                }).start()
-                loginViewModel.successGetUser.observe(
-                    viewLifecycleOwner,
-                    Observer<Boolean> { success ->
-                        if (success) {
+                    uiScope.launch {
+                    val result = loginViewModel.getUser(username, password) //opens up database
+                        if (result != null) {
                             Toast.makeText(activity, "Login Successful", Toast.LENGTH_LONG).show()
-                            findNavController().navigate(
-                                LoginFragmentDirections.actionLoginFragmentToMainFragment(
-                                    username
-                                )
-                            )
+                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment(username)) // Goes to main page and sends username
                         } else {
                             Toast.makeText(
                                 activity,
@@ -80,8 +70,11 @@ class LoginFragment : Fragment() {
                             ).show()
                         }
                     }
-                )
-            }
+                }
+        }
+
+        binding.tvRegister.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
     }
 }

@@ -83,6 +83,10 @@ class MainFragment : Fragment() {
         //Gets username from login page using navArgs
         binding.tvUsername.text = args.username
 
+        binding.tvProfile.setOnClickListener {
+
+        }
+
     }
 
     private fun setupObserver(){

@@ -45,6 +45,6 @@
         tools:layout="@layout/fragment_second" >
         <argument
             android:name="movie_details"
-            app:argType="com.binar.movielistingchallenge.movie.movies.model.MovieDetails" />
+            app:argType="com.binar.movielistingchallenge.data.remotemodel.MovieDetails" />
     </fragment>
 </navigation>
