@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.binar.movielistingchallenge.databinding.FragmentRegisterBinding
 import com.binar.movielistingchallenge.data.user.RegisterDatabase
 import com.binar.movielistingchallenge.data.user.RegisterEntity
+import com.binar.movielistingchallenge.repositories.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -16,6 +18,7 @@ import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
+    private lateinit var registerViewModel: RegisterViewModel
     private lateinit var registerDb: RegisterDatabase
 
     //Coroutines
@@ -27,7 +30,11 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
+        val registerDAO = RegisterDatabase.getInstance(requireContext()).registerDAO()
+        val repository = UserRepository(registerDAO)
+        val factory = RegisterViewModelFactory(repository)
+        registerViewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
         return binding.root
     }
 
@@ -63,15 +70,14 @@ class RegisterFragment : Fragment() {
         )
 
         uiScope.launch {
-            val result =
-                registerDb.registerDAO().insertUser(objectRegister) //Inserts list to the database using inserUser from DAO
-            activity?.runOnUiThread {
+//            val result = registerDb.registerDAO().insertUser(objectRegister) //Inserts list to the database using insert User from DAO
+            val result = registerViewModel.insertUser(objectRegister)
                 if (result != 0.toLong()) {
                     Toast.makeText(activity, "Success adding ${objectRegister.username}", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(activity, "Failed adding ${objectRegister.username}", Toast.LENGTH_LONG).show()
                 }
-            }
+
         }
     }
 }

@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.binar.movielistingchallenge.databinding.MovieItemBinding
-import com.binar.movielistingchallenge.data.remotemodel.MovieDetails
-import com.binar.movielistingchallenge.data.remotemodel.Movies
+import com.binar.movielistingchallenge.data.movies.MovieDetails
+import com.binar.movielistingchallenge.data.movies.Movies
 import com.bumptech.glide.Glide
 
 ////Binar Adapter

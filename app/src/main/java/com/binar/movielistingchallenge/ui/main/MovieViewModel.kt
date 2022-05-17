@@ -1,43 +1,18 @@
 package com.binar.movielistingchallenge.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.binar.movielistingchallenge.data.remotemodel.MovieModel
-import com.binar.movielistingchallenge.data.remotemodel.Movies
-import com.binar.movielistingchallenge.movie.movies.network.MovieApi
-import retrofit2.Call
-import retrofit2.Response
+import com.binar.movielistingchallenge.data.movies.Movies
+import com.binar.movielistingchallenge.repositories.MoviesRepository
 
-//Andre
-class MovieViewModel : ViewModel() {
-
-    private val movies: MutableLiveData<List<Movies>> by lazy {
-        MutableLiveData<List<Movies>>().also {
-            getAllMovies()
-        }
-    }
+class MovieViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     fun getMovies(): LiveData<List<Movies>>{
-        return movies
+        return repository.movies
     }
 
-    private fun getAllMovies(){
-        MovieApi.retrofitService.getMovies().enqueue(object : retrofit2.Callback<MovieModel> {
-            override fun onResponse(
-                call: Call<MovieModel>,
-                response: Response<MovieModel>
-            ) {
-                movies.value = response.body()?.results
-            }
 
-            override fun onFailure(call: Call<MovieModel>, t: Throwable) {
-                Log.d("Tag",t.message.toString())
-            }
 
-        })
-    }
 }
 
 

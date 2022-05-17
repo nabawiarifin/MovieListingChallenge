@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.data.remotemodel
+package com.binar.movielistingchallenge.data.movies
 
 
 import com.google.gson.annotations.SerializedName

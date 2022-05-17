@@ -1,9 +1,6 @@
 package com.binar.movielistingchallenge.data.user
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface RegisterDAO {
@@ -19,6 +16,10 @@ interface RegisterDAO {
     //Delete all users from database
     @Query ("DELETE FROM register_user_table")
     fun deleteAll()
+
+//    @Update
+//    suspend fun updateUser(registerEntity: RegisterEntity): Long
+
 
 
 }

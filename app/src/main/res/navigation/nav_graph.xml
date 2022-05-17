@@ -16,6 +16,12 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -42,9 +48,19 @@
         android:id="@+id/secondFragment"
         android:name="com.binar.movielistingchallenge.ui.detail.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
+        tools:layout="@layout/fragment_detail" >
         <argument
             android:name="movie_details"
             app:argType="com.binar.movielistingchallenge.data.remotemodel.MovieDetails" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.binar.movielistingchallenge.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.binar.movielistingchallenge.ui.favourite.FavouriteFragment"
+        android:label="favourite_fragment"
+        tools:layout="@layout/favourite_fragment" />
 </navigation>

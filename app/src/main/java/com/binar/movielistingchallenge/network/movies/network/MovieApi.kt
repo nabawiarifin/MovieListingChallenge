@@ -1,4 +1,4 @@
-package com.binar.movielistingchallenge.movie.movies.network
+package com.binar.movielistingchallenge.network.movies.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
