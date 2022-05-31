@@ -6,20 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.binar.movielistingchallenge.data.user.RegisterDAO
 import com.binar.movielistingchallenge.databinding.FragmentRegisterBinding
 import com.binar.movielistingchallenge.data.user.RegisterDatabase
 import com.binar.movielistingchallenge.data.user.RegisterEntity
 import com.binar.movielistingchallenge.repositories.UserRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
-    private lateinit var registerDb: RegisterDatabase
+    private val viewModel: RegisterViewModel by viewModels()
 
     //Coroutines
     private val viewModelJob = Job()
@@ -31,17 +34,14 @@ class RegisterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(layoutInflater)
-        val registerDAO = RegisterDatabase.getInstance(requireContext()).registerDAO()
-        val repository = UserRepository(registerDAO)
-        val factory = RegisterViewModelFactory(repository)
-        registerViewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
+//        val registerDAO = RegisterDatabase.getInstance(requireContext()).registerDAO()
+//        val repository = UserRepository(registerDAO)
+//        registerViewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        registerDb = RegisterDatabase.getInstance(requireContext())
 
         binding.btnRegister.setOnClickListener {
             val email = binding.etEmailRegister.text.toString()
@@ -56,8 +56,6 @@ class RegisterFragment : Fragment() {
                     .show()
             }
         }
-
-
     }
 
     private fun registerAccount(email: String, username: String, password: String) {
@@ -71,7 +69,7 @@ class RegisterFragment : Fragment() {
 
         uiScope.launch {
 //            val result = registerDb.registerDAO().insertUser(objectRegister) //Inserts list to the database using insert User from DAO
-            val result = registerViewModel.insertUser(objectRegister)
+            val result = viewModel.insertUser(objectRegister)
                 if (result != 0.toLong()) {
                     Toast.makeText(activity, "Success adding ${objectRegister.username}", Toast.LENGTH_LONG).show()
                 } else {

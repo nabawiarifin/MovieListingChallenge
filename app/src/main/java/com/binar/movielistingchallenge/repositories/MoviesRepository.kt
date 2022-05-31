@@ -9,8 +9,9 @@ import com.binar.movielistingchallenge.data.movies.favourite.FavouriteEntity
 import com.binar.movielistingchallenge.network.movies.network.MovieApi
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
-class MoviesRepository(private val dao: FavouriteDAO) {
+class MoviesRepository @Inject constructor(private val dao: FavouriteDAO) {
 
     //Get movies from web
     val movies: MutableLiveData<List<Movies>> by lazy {

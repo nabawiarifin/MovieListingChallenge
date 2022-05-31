@@ -6,18 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.binar.movielistingchallenge.databinding.FragmentLoginBinding
 import com.binar.movielistingchallenge.data.user.RegisterDatabase
 import com.binar.movielistingchallenge.repositories.UserRepository
+import com.binar.movielistingchallenge.ui.register.RegisterViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var binding: FragmentLoginBinding
 
     //Coroutine
@@ -32,10 +36,10 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater)
 
         //Opens up database
-        val registerDAO = RegisterDatabase.getInstance(requireContext()).registerDAO()
-        val repository = UserRepository(registerDAO)
-        val factory = LoginViewModelFactory(repository)
-        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+//        val registerDAO = RegisterDatabase.getInstance(requireContext()).registerDAO()
+//        val repository = UserRepository(registerDAO)
+//        val factory = LoginViewModelFactory(repository)
+//        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
         return binding.root
     }

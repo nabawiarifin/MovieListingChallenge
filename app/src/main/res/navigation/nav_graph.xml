@@ -46,12 +46,11 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.binar.movielistingchallenge.ui.detail.SecondFragment"
-        android:label="fragment_second"
-        tools:layout="@layout/fragment_detail" >
+        android:name="com.binar.movielistingchallenge.ui.detail.DetailFragment"
+        android:label="fragment_detail">
         <argument
             android:name="movie_details"
-            app:argType="com.binar.movielistingchallenge.data.remotemodel.MovieDetails" />
+            app:argType="com.binar.movielistingchallenge.data.movies.MovieDetails" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
